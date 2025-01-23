@@ -60,8 +60,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	     <PackageReference Include="Reactor.Maui" Version="3.0.12-beta" />
+         <PackageReference Include="Reactor.Maui.Canvas" Version="3.0.12-beta" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<PackageReference Include="Ory.Client" Version="1.16.2" />
 	</ItemGroup>
+
+	 <ItemGroup Condition="'$(Configuration)'=='Debug'">
+  <RuntimeHostConfigurationOption Include="MauiReactor.HotReload" Value="true" Trim="false" />
+</ItemGroup>
+
+<ItemGroup Condition="'$(Configuration)'=='Release'">
+    <RuntimeHostConfigurationOption Include="MauiReactor.HotReload" Value="false" Trim="true" />
+</ItemGroup>
 
 </Project>

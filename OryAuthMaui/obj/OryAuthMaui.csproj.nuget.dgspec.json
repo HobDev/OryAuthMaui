@@ -74,6 +74,18 @@
               "target": "Package",
               "version": "[9.0.1, )",
               "autoReferenced": true
+            },
+            "Ory.Client": {
+              "target": "Package",
+              "version": "[1.16.2, )"
+            },
+            "Reactor.Maui": {
+              "target": "Package",
+              "version": "[3.0.12-beta, )"
+            },
+            "Reactor.Maui.Canvas": {
+              "target": "Package",
+              "version": "[3.0.12-beta, )"
             }
           },
           "imports": [
@@ -113,6 +125,18 @@
               "target": "Package",
               "version": "[9.0.1, )",
               "autoReferenced": true
+            },
+            "Ory.Client": {
+              "target": "Package",
+              "version": "[1.16.2, )"
+            },
+            "Reactor.Maui": {
+              "target": "Package",
+              "version": "[3.0.12-beta, )"
+            },
+            "Reactor.Maui.Canvas": {
+              "target": "Package",
+              "version": "[3.0.12-beta, )"
             }
           },
           "imports": [
@@ -152,6 +176,18 @@
               "target": "Package",
               "version": "[9.0.1, )",
               "autoReferenced": true
+            },
+            "Ory.Client": {
+              "target": "Package",
+              "version": "[1.16.2, )"
+            },
+            "Reactor.Maui": {
+              "target": "Package",
+              "version": "[3.0.12-beta, )"
+            },
+            "Reactor.Maui.Canvas": {
+              "target": "Package",
+              "version": "[3.0.12-beta, )"
             }
           },
           "imports": [
@@ -186,6 +222,18 @@
             "Microsoft.Maui.Controls": {
               "target": "Package",
               "version": "[9.0.14, )"
+            },
+            "Ory.Client": {
+              "target": "Package",
+              "version": "[1.16.2, )"
+            },
+            "Reactor.Maui": {
+              "target": "Package",
+              "version": "[3.0.12-beta, )"
+            },
+            "Reactor.Maui.Canvas": {
+              "target": "Package",
+              "version": "[3.0.12-beta, )"
             }
           },
           "imports": [

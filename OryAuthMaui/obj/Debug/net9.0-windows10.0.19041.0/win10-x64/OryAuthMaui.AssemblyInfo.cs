@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OryAuthMaui")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+b98caac50f87a6ebbe0667316e5a043e7be8bd54")]
 [assembly: System.Reflection.AssemblyProductAttribute("OryAuthMaui")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OryAuthMaui")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
