@@ -1,15 +1,23 @@
+
+using MauiReactor;
+
 namespace OryAuthMaui;
 
-public class LoginPage : ContentPage
+public class LoginPage : Component
 {
-	public LoginPage()
+	public override VisualNode Render()
 	{
-		Content = new VerticalStackLayout
-		{
-			Children = {
-				new Label { HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center, Text = "Welcome to .NET MAUI!"
-				}
-			}
-		};
+		return ContentPage(
+			VStack(
+				Label("Buy Page")
+					.FontSize(24)
+					.HCenter()
+					.VCenter(),
+				Label("Select a subscription to buy")
+					.FontSize(18),
+				Button("Buy Subscription")
+					.HCenter()
+			)
+		);
 	}
 }
