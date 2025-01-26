@@ -1,18 +1,18 @@
-﻿
-using MauiReactor;
+﻿using MauiReactor;
+
 
 namespace OryAuthNetMaui.Views;
-class LoginPageState
+
+class RegistrationPageState
 {
-    private readonly  OryService _oryService;
+    private readonly OryService _oryService;
     private string _flowId;
 }
 
-
-class LoginPage : Component<LoginPageState>
+class RegistrationPage : Component<RegistrationPageState>
 {
 
-    protected override void OnMounted()
+      protected override void OnMounted()
     {
         Fetch();
        
@@ -23,7 +23,6 @@ class LoginPage : Component<LoginPageState>
     {
        var _oryService= Services.GetService<OryService>();
     }
-
     public override VisualNode Render()
     {
         return new ContentPage
@@ -32,26 +31,28 @@ class LoginPage : Component<LoginPageState>
             {
                 new VerticalStackLayout
                 {
-                    
+                   
 
-                    new Label("Login!")
+                    new Label("Register!")
                         .FontSize(32)
                         .HCenter(),
 
                     new Entry()
                     .Placeholder("Email")
+                    .HCenter()
                     .WidthRequest(300)
                         .FontSize(18)
                         .HCenter(),
 
                         new Entry()
                     .Placeholder("Password")
+                    .HCenter()
                     .WidthRequest(300)
                         .FontSize(18)
                         .HCenter(),
 
-                    new Button("Login")
-                        .OnClicked(Login)
+                    new Button("Register")
+                        .OnClicked(Register)
                         .HCenter()                    
                 }
                 .VCenter()
@@ -61,8 +62,11 @@ class LoginPage : Component<LoginPageState>
         };
     }
 
-    private async Task Login()
+    private async Task Register()
     {
-       
+        var _oryService= Services.GetService<OryService>();
+        var flow = await _oryService.CreateRegistrationFlow();
+        _flowId = flow.Id;
+        // Use flow.Ui to populate your registration form
     }
 }

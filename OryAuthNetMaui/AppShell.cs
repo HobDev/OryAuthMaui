@@ -13,8 +13,7 @@ class AppShell : Component<AppShellState>
 
       protected override void OnMounted()
 	{
-		Routing.RegisterRoute<MainPage>(nameof(MainPage));    
-        
+		  
 
         base.OnMounted();
 
@@ -23,7 +22,7 @@ class AppShell : Component<AppShellState>
      public override VisualNode Render()
      => Window
     (
-       State.LoggedIn ? 
+       !State.LoggedIn ? 
         RenderLogin()
         :
         RenderShell()
