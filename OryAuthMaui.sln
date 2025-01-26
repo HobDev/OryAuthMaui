@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OryAuthNetMaui", "OryAuthNetMaui\OryAuthNetMaui.csproj", "{518B4B80-1179-40EE-8628-F85D4440AA64}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OryAuthMauiMvvm", "OryAuthMauiMvvm\OryAuthMauiMvvm.csproj", "{59E8BFA2-6B54-4209-AB29-63E11479B994}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OryAuthMauiMvu", "OryAuthMauiMvu\OryAuthMauiMvu.csproj", "{A98460D4-5B90-4991-A3C9-F22EFD600438}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{518B4B80-1179-40EE-8628-F85D4440AA64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{518B4B80-1179-40EE-8628-F85D4440AA64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{518B4B80-1179-40EE-8628-F85D4440AA64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{518B4B80-1179-40EE-8628-F85D4440AA64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59E8BFA2-6B54-4209-AB29-63E11479B994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59E8BFA2-6B54-4209-AB29-63E11479B994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59E8BFA2-6B54-4209-AB29-63E11479B994}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59E8BFA2-6B54-4209-AB29-63E11479B994}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A98460D4-5B90-4991-A3C9-F22EFD600438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A98460D4-5B90-4991-A3C9-F22EFD600438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A98460D4-5B90-4991-A3C9-F22EFD600438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A98460D4-5B90-4991-A3C9-F22EFD600438}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
