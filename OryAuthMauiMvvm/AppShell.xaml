@@ -8,8 +8,8 @@
     Title="OryAuthMauiMvvm">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="Register"
+        ContentTemplate="{DataTemplate local:RegisterPagePage}"
+        Route="RegisterPage" />
 
 </Shell>
