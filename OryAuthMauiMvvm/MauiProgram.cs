@@ -35,14 +35,12 @@ public static class MauiProgram
 
 	public static MauiAppBuilder ConfigurePages(this MauiAppBuilder builder)
 	{
-		builder.Services.AddTransient<LoginPage>();
 		builder.Services.AddTransient<RegisterPage>();
 		return builder;
 	}
 
 	public static MauiAppBuilder ConfigureViewModels(this MauiAppBuilder builder)
 	{
-		builder.Services.AddTransient<LoginViewModel>();
 		builder.Services.AddTransient<RegisterViewModel>();
 		return builder;
 	}

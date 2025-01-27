@@ -10,3 +10,5 @@ global using System.Threading.Tasks;
 global using OryAuthMauiMvvm.Services;
 global using Microsoft.Extensions.DependencyInjection;
 global using System.Collections.Generic;
+global using CommunityToolkit.Maui.Markup;
+global using OryAuthMauiMvvm.ViewModels;

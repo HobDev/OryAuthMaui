@@ -1,4 +1,4 @@
-using OryAuthMauiMvvm.ViewModels;
+
 
 namespace OryAuthMauiMvvm.Pages;
 
@@ -9,29 +9,35 @@ public class RegisterPage : ContentPage
 		
 		Content = new VerticalStackLayout
 		{
+			Spacing=20,
 			Children = 
 			{
 				new Label
 				 { 
-					HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center, Text = "Register!"
+					HorizontalOptions = LayoutOptions.Center, 
+					VerticalOptions = LayoutOptions.Center, 
+					Text = "Register!",
+					FontSize = 24
 				},
 				new Entry
 				{
-					Placeholder = "Username",
+					Placeholder = "email",
 					WidthRequest = 300,
 					FontSize = 18,
 					HorizontalOptions = LayoutOptions.Center
-				},
+				}.Bind(Entry.TextProperty, nameof(RegisterViewModel.EmailId)),
 				new Entry
 				{
-					Placeholder = "Email",
+					Placeholder = "Password",
+					IsPassword = true,
 					WidthRequest = 300,
 					FontSize = 18,
 					HorizontalOptions = LayoutOptions.Center
-				},
+				}.Bind(Entry.TextProperty, nameof(RegisterViewModel.Password)),
 				new Button
 				{
 					Text = "Register",
+					WidthRequest = 300,
 					Command = viewModel.RegisterCommand	
 				}
 

@@ -29,23 +29,23 @@ public class OryService
         }
     }
 
-     public async Task<ClientSuccessfulNativeRegistration> RegisterUser(string flowId, Dictionary<string, object> traits)
-    {
-        try
-        {
-            var submitRegistrationFlowBody = new SubmitRegistrationFlowBody(
-                Method: "password",
-                Password: "your_password_here",
-                Traits: traits
-            );
+    //  public async Task<ClientSuccessfulNativeRegistration> RegisterUser(string flowId, Dictionary<string, object> traits)
+    // {
+    //     try
+    //     {
+    //         var submitRegistrationFlowBody = new SubmitRegistrationFlowBody(
+    //             Method: "password",
+    //             Password: "your_password_here",
+    //             Traits: traits
+    //         );
 
-            return await _frontendApi.CreateNativeRegistrationFlowAsync(flowId, submitRegistrationFlowBody);
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine($"Error registering user: {e.Message}");
-            throw;
+    //         return await _frontendApi.SubmitNativeRegistrationFlowAsync(flowId, submitRegistrationFlowBody);
+    //     }
+    //     catch (ApiException e)
+    //     {
+    //         Console.WriteLine($"Error registering user: {e.Message}");
+    //         throw;
             
-        }
-    }
+    //     }
+    // }
 }

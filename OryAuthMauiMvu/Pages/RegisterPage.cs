@@ -1,35 +1,26 @@
-﻿using MauiReactor;
+﻿
+using MauiReactor;
 
 namespace OryAuthMauiMvu.Pages;
 
 class RegisterPageState
 {
-    private readonly OryService _oryService;
-    public string _flowId;
+  public string EmailId{get;set;}   
+   public string Password {get;set;}
+
 }
 
 class RegisterPage : Component<RegisterPageState>
 {
-      protected override void OnMounted()
-    {
-        Fetch();
-       
-        base.OnMounted();
-    }
-
-    private void Fetch()
-    {
-       var _oryService= Services.GetService<OryService>();
-    }
+    
     public override VisualNode Render()
     {
         return new ContentPage
         {
             new ScrollView
             {
-                new VerticalStackLayout
+                new VStack
                 {
-                   
 
                     new Label("Register!")
                         .FontSize(32)
@@ -40,16 +31,20 @@ class RegisterPage : Component<RegisterPageState>
                     .HCenter()
                     .WidthRequest(300)
                         .FontSize(18)
-                        .HCenter(),
+                        .HCenter()
+                        .OnTextChanged(text => State.EmailId = text),          
 
                         new Entry()
                     .Placeholder("Password")
+                    .IsPassword(true)
                     .HCenter()
                     .WidthRequest(300)
                         .FontSize(18)
-                        .HCenter(),
+                        .HCenter()
+                        .OnTextChanged(text => State.Password = text),
 
                     new Button("Register")
+                    .WidthRequest(300)
                         .OnClicked(Register)
                         .HCenter()                    
                 }
@@ -64,7 +59,24 @@ class RegisterPage : Component<RegisterPageState>
     {
         var _oryService= Services.GetService<OryService>();
         var flow = await _oryService.CreateRegistrationFlow();
-       State._flowId = flow.Id;
-        // Use flow.Ui to populate your registration form
+        string _flowId = flow.Id;
+       // Use flow.Ui to populate your registration form
+
+
+         var traits = new Dictionary<string, object>
+         {
+             {"email", State.EmailId},
+            //{"password", Password}
+         };
+
+         try
+        {
+        //  var result = await _oryService.RegisterUser(_flowId, traits);
+         // Handle successful registration
+        }
+        catch (Exception ex)
+        {
+            // Handle registration error
+        }
     }
 }

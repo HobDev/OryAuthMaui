@@ -3,13 +3,13 @@
     x:Class="OryAuthMauiMvvm.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:OryAuthMauiMvvm"
+    xmlns:local="clr-namespace:OryAuthMauiMvvm.Pages"
     Shell.FlyoutBehavior="Flyout"
     Title="OryAuthMauiMvvm">
 
     <ShellContent
         Title="Register"
-        ContentTemplate="{DataTemplate local:RegisterPagePage}"
+        ContentTemplate="{DataTemplate local:RegisterPage}"
         Route="RegisterPage" />
 
 </Shell>
