@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using OryAuthMauiMvvm.Pages;
-using OryAuthMauiMvvm.ViewModels;
+﻿
 
 namespace OryAuthMauiMvvm;
 
@@ -29,7 +27,7 @@ public static class MauiProgram
 
 	 public static MauiAppBuilder ConfigureServices(this MauiAppBuilder builder)
 	{
-		builder.Services.AddSingleton<OryService>();
+		builder.Services.AddSingleton<IOryService, OryService>();
 		return builder;
 	}
 

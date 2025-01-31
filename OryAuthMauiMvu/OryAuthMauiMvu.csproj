@@ -61,7 +61,6 @@
          <PackageReference Include="Reactor.Maui.Canvas" Version="3.0.16" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.30" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.1" />
-		<PackageReference Include="Ory.Client" Version="1.16.2" />
 	</ItemGroup>
 
    <ItemGroup Condition="'$(Configuration)'=='Debug'">
@@ -70,5 +69,9 @@
 
 <ItemGroup Condition="'$(Configuration)'=='Release'">
     <RuntimeHostConfigurationOption Include="MauiReactor.HotReload" Value="false" Trim="true" />
+</ItemGroup>
+
+<ItemGroup>
+  <ProjectReference Include="..\OryAuthMauiShared\OryAuthMauiShared.csproj" />
 </ItemGroup>
 </Project>

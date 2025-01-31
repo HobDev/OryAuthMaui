@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Logging;
 using OryAuthMauiMvu.Resources.Styles;
 using OryAuthMauiMvu.Pages;
+using OryAuthMauiShared.Services.Interfaces;
+
 
 
 namespace OryAuthMauiMvu;
@@ -17,9 +19,7 @@ public static class MauiProgram
                app.UseTheme<AppTheme>();
             })
 			.ConfigureServices()
- #if DEBUG
-          //  .EnableMauiReactorHotReload()
-#endif
+            .ConfigurePages()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -37,7 +37,13 @@ public static class MauiProgram
 
     public static MauiAppBuilder ConfigureServices(this MauiAppBuilder builder)
 	{
-		builder.Services.AddSingleton<OryService>();
+		builder.Services.AddSingleton<IOryService,OryService>();
+		return builder;
+	}
+
+    public static MauiAppBuilder ConfigurePages(this MauiAppBuilder builder)
+	{
+		builder.Services.AddTransient<RegisterPage>();
 		return builder;
 	}
 }

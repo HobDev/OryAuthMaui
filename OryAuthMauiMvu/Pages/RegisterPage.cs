@@ -1,6 +1,7 @@
 ﻿
 using MauiReactor;
 
+
 namespace OryAuthMauiMvu.Pages;
 
 class RegisterPageState
@@ -10,8 +11,10 @@ class RegisterPageState
 
 }
 
-class RegisterPage : Component<RegisterPageState>
+partial class RegisterPage : Component<RegisterPageState>
 {
+    [Inject]
+    IOryService _oryService;
     
     public override VisualNode Render()
     {
@@ -57,7 +60,7 @@ class RegisterPage : Component<RegisterPageState>
 
     private async Task Register()
     {
-        var _oryService= Services.GetService<OryService>();
+       
         var flow = await _oryService.CreateRegistrationFlow();
         string _flowId = flow.Id;
        // Use flow.Ui to populate your registration form

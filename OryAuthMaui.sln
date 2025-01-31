@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OryAuthMauiMvvm", "OryAuthM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OryAuthMauiMvu", "OryAuthMauiMvu\OryAuthMauiMvu.csproj", "{A98460D4-5B90-4991-A3C9-F22EFD600438}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OryAuthMauiShared", "OryAuthMauiShared\OryAuthMauiShared.csproj", "{61E0F9DC-F8DE-4900-919F-02E402884482}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A98460D4-5B90-4991-A3C9-F22EFD600438}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A98460D4-5B90-4991-A3C9-F22EFD600438}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A98460D4-5B90-4991-A3C9-F22EFD600438}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61E0F9DC-F8DE-4900-919F-02E402884482}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61E0F9DC-F8DE-4900-919F-02E402884482}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61E0F9DC-F8DE-4900-919F-02E402884482}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61E0F9DC-F8DE-4900-919F-02E402884482}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

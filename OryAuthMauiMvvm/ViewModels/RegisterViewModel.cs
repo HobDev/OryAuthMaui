@@ -1,6 +1,4 @@
-using System;
-using System.ComponentModel;
-using CommunityToolkit.Mvvm.ComponentModel;
+
 
 namespace OryAuthMauiMvvm.ViewModels;
 
@@ -17,9 +15,9 @@ public partial class RegisterViewModel: ObservableObject
 
     private string _flowId;
 
-     private readonly OryService _oryService;
+     private readonly IOryService _oryService;
      
-    public RegisterViewModel(OryService oryService)
+    public RegisterViewModel(IOryService oryService)
     {
         _oryService = oryService;
         RegisterCommand = new Command(async ()=>await Register());
