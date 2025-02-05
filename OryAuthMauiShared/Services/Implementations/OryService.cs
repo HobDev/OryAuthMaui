@@ -1,5 +1,8 @@
 
 
+using System.Diagnostics;
+using RestSharp;
+
 namespace OryAuthMauiShared.Services.Implementations;
 
 public class OryService : IOryService
@@ -32,26 +35,34 @@ public class OryService : IOryService
 
  
 
-     public async Task<ClientSuccessfulNativeRegistration> RegisterUser(string flowId, Dictionary<string, object> traits)
+     public async Task<ClientSuccessfulNativeRegistration?> RegisterUser( Dictionary<string, object> traits, string password, string flowId)
     {
-        // try
-        // {
-        //     var submitRegistrationFlowBody = new SubmitRegistrationFlowBody(
-        //         Method: "password",
-        //         Password: "your_password_here",
-        //         Traits: traits
-        //     );
+            ClientSuccessfulNativeRegistration? result=null;
+            ClientUpdateRegistrationFlowBody? clientUpdateRegistrationFlowBody = new Ory.Client.Model.ClientUpdateRegistrationFlowBody
+            (
+                new  ClientUpdateRegistrationFlowWithPasswordMethod
+            {
+                Method = "password",
+                Password = password,
+                Traits = traits,
+                
+            }
+            );
 
-        //     return await _frontendApi.SubmitNativeRegistrationFlowAsync(flowId, submitRegistrationFlowBody);
-        // }
-        // catch (ApiException e)
-        // {
-        //     Console.WriteLine($"Error registering user: {e.Message}");
-        //     throw;
+         try     
+        {
+             result = _frontendApi.UpdateRegistrationFlow(flowId, clientUpdateRegistrationFlowBody);
+        }
+        
 
-        // }
+          catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FrontendApi.UpdateRegistrationFlow: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
 
-        return new ClientSuccessfulNativeRegistration();
+        return result;
     }
 
     

@@ -6,7 +6,7 @@ public interface IOryService
 {
     Task<ClientRegistrationFlow> CreateRegistrationFlow();
 
-    Task<ClientSuccessfulNativeRegistration> RegisterUser(string flowId, Dictionary<string, object> traits);
+    Task<ClientSuccessfulNativeRegistration> RegisterUser( Dictionary<string, object> traits, string password, string flowId);
 
 
 

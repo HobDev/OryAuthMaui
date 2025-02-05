@@ -1,5 +1,6 @@
 ﻿
 using MauiReactor;
+using Ory.Client.Model;
 
 
 namespace OryAuthMauiMvu.Pages;
@@ -69,12 +70,11 @@ partial class RegisterPage : Component<RegisterPageState>
          var traits = new Dictionary<string, object>
          {
              {"email", State.EmailId},
-            //{"password", Password}
          };
 
          try
         {
-        //  var result = await _oryService.RegisterUser(_flowId, traits);
+          ClientSuccessfulNativeRegistration? result = await _oryService.RegisterUser(traits, State.Password, _flowId);
          // Handle successful registration
         }
         catch (Exception ex)

@@ -1,5 +1,7 @@
 
 
+using Ory.Client.Model;
+
 namespace OryAuthMauiMvvm.ViewModels;
 
 public partial class RegisterViewModel: ObservableObject
@@ -36,12 +38,11 @@ public partial class RegisterViewModel: ObservableObject
          var traits = new Dictionary<string, object>
          {
              {"email", EmailId},
-            //  {"password", Password}
          };
 
          try
         {
-          //  var result = await _oryService.RegisterUser(_flowId, traits);
+            ClientSuccessfulNativeRegistration? result = await _oryService.RegisterUser( traits, Password, _flowId);
           // Handle successful registration
         }
         catch (Exception ex)
