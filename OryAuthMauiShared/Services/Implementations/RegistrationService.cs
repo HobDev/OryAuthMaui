@@ -1,7 +1,6 @@
 
 
-using System.Diagnostics;
-using RestSharp;
+
 
 namespace OryAuthMauiShared.Services.Implementations;
 
@@ -35,18 +34,18 @@ public class RegistrationService : IRegistrationService
 
  
 
-     public async Task<ClientSuccessfulNativeRegistration?> RegisterUser( Dictionary<string, object> traits, string password, string flowId)
+     public async Task<ClientSuccessfulNativeRegistration?> RegisterUser( Dictionary<string, object> registrationTraits, string registrationPassword, string flowId)
     {
             ClientSuccessfulNativeRegistration? result=null;
             ClientUpdateRegistrationFlowBody? clientUpdateRegistrationFlowBody = new Ory.Client.Model.ClientUpdateRegistrationFlowBody
             (
                 new  ClientUpdateRegistrationFlowWithPasswordMethod
-            {
-                Method = "password",
-                Password = password,
-                Traits = traits,
+            (
+                method : "password",
+                password :registrationPassword,
+                traits : registrationTraits
                 
-            }
+            )
             );
 
          try     
