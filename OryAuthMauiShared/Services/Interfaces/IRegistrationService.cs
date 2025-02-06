@@ -2,7 +2,7 @@ using System;
 
 namespace OryAuthMauiShared.Services.Interfaces;
 
-public interface IOryService
+public interface IRegistrationService
 {
     Task<ClientRegistrationFlow> CreateRegistrationFlow();
 

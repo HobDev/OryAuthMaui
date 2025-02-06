@@ -15,7 +15,7 @@ class RegisterPageState
 partial class RegisterPage : Component<RegisterPageState>
 {
     [Inject]
-    IOryService _oryService;
+    IRegistrationService _registrationService;
     
     public override VisualNode Render()
     {
@@ -62,7 +62,7 @@ partial class RegisterPage : Component<RegisterPageState>
     private async Task Register()
     {
        
-        var flow = await _oryService.CreateRegistrationFlow();
+        var flow = await _registrationService.CreateRegistrationFlow();
         string _flowId = flow.Id;
        // Use flow.Ui to populate your registration form
 
@@ -74,7 +74,7 @@ partial class RegisterPage : Component<RegisterPageState>
 
          try
         {
-          ClientSuccessfulNativeRegistration? result = await _oryService.RegisterUser(traits, State.Password, _flowId);
+          ClientSuccessfulNativeRegistration? result = await _registrationService.RegisterUser(traits, State.Password, _flowId);
          // Handle successful registration
         }
         catch (Exception ex)

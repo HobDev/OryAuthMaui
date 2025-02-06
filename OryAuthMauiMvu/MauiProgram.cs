@@ -37,13 +37,21 @@ public static class MauiProgram
 
     public static MauiAppBuilder ConfigureServices(this MauiAppBuilder builder)
 	{
-		builder.Services.AddSingleton<IOryService,OryService>();
+		builder.Services.AddSingleton<IRegistrationService,RegistrationService>();
+		builder.Services.AddSingleton<ILoginService,LoginService>();
+		builder.Services.AddSingleton<IChangePasswordService,ChangePasswordService>();
+		builder.Services.AddSingleton<IForgotPasswordService,ForgotPasswordService>();
+		builder.Services.AddSingleton<ILogoutService,LogoutService>();
 		return builder;
 	}
 
     public static MauiAppBuilder ConfigurePages(this MauiAppBuilder builder)
 	{
 		builder.Services.AddTransient<RegisterPage>();
+		builder.Services.AddTransient<LoginPage>();
+		builder.Services.AddTransient<ForgotPasswordPage>();
+		builder.Services.AddTransient<ChangePasswordPage>();
+		builder.Services.AddTransient<MainPage>();
 		return builder;
 	}
 }

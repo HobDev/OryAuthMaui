@@ -17,11 +17,11 @@ public partial class RegisterViewModel: ObservableObject
 
     private string _flowId;
 
-     private readonly IOryService _oryService;
+     private readonly IRegistrationService _registrationService;
      
-    public RegisterViewModel(IOryService oryService)
+    public RegisterViewModel(IRegistrationService registrationService)
     {
-        _oryService = oryService;
+        _registrationService = registrationService;
         RegisterCommand = new Command(async ()=>await Register());
     }
     
@@ -30,7 +30,7 @@ public partial class RegisterViewModel: ObservableObject
 
     private async Task Register()
     {
-      var flow= await  _oryService.CreateRegistrationFlow();
+      var flow= await  _registrationService.CreateRegistrationFlow();
         _flowId = flow.Id;
          // Use flow.Ui to populate your registration form
 
@@ -42,7 +42,7 @@ public partial class RegisterViewModel: ObservableObject
 
          try
         {
-            ClientSuccessfulNativeRegistration? result = await _oryService.RegisterUser( traits, Password, _flowId);
+            ClientSuccessfulNativeRegistration? result = await _registrationService.RegisterUser( traits, Password, _flowId);
           // Handle successful registration
         }
         catch (Exception ex)

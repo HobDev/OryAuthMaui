@@ -5,12 +5,12 @@ using RestSharp;
 
 namespace OryAuthMauiShared.Services.Implementations;
 
-public class OryService : IOryService
+public class RegistrationService : IRegistrationService
 {
       private readonly FrontendApi _frontendApi;
    
 
-    public OryService()
+    public RegistrationService()
     {
         var configuration = new Configuration
         {
