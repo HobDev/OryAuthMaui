@@ -10,7 +10,7 @@ public class LoginService : ILoginService
     {
         var configuration = new Configuration
         {
-            BasePath = "https://kind-kapitsa-rmqphy91zf.projects.oryapis.com"
+            BasePath = AppConstants.baseUrl
         };
 
         _frontendApi = new FrontendApi(configuration);

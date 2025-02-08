@@ -6,8 +6,8 @@ namespace OryAuthMauiShared.Services.Implementations;
 
 public class RegistrationService : IRegistrationService
 {
-      private readonly FrontendApi _frontendApi;
-   
+    private readonly FrontendApi _frontendApi;
+
 
     public RegistrationService()
     {
@@ -32,37 +32,37 @@ public class RegistrationService : IRegistrationService
         }
     }
 
- 
 
-     public async Task<ClientSuccessfulNativeRegistration?> RegisterUser( Dictionary<string, object> registrationTraits, string registrationPassword, string flowId)
+
+    public async Task<ClientSuccessfulNativeRegistration?> RegisterUser(Dictionary<string, object> registrationTraits, string registrationPassword, string flowId)
     {
-            ClientSuccessfulNativeRegistration? result=null;
-            ClientUpdateRegistrationFlowBody? clientUpdateRegistrationFlowBody = new Ory.Client.Model.ClientUpdateRegistrationFlowBody
-            (
-                new  ClientUpdateRegistrationFlowWithPasswordMethod
-            (
-                method : "password",
-                password :registrationPassword,
-                traits : registrationTraits
-                
-            )
-            );
+        ClientSuccessfulNativeRegistration? result = null;
+        ClientUpdateRegistrationFlowBody? clientUpdateRegistrationFlowBody = new Ory.Client.Model.ClientUpdateRegistrationFlowBody
+        (
+            new ClientUpdateRegistrationFlowWithPasswordMethod
+        (
+            method: "password",
+            password: registrationPassword,
+                 traits: registrationTraits
 
-         try     
+        )
+        );
+
+        try
         {
-             result = _frontendApi.UpdateRegistrationFlow(flowId, clientUpdateRegistrationFlowBody);
+            result = _frontendApi.UpdateRegistrationFlow(flowId, clientUpdateRegistrationFlowBody);
         }
-        
 
-          catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling FrontendApi.UpdateRegistrationFlow: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+
+        catch (ApiException e)
+        {
+            Debug.Print("Exception when calling FrontendApi.UpdateRegistrationFlow: " + e.Message);
+            Debug.Print("Status Code: " + e.ErrorCode);
+            Debug.Print(e.StackTrace);
+        }
 
         return result;
     }
 
-    
+
 }
