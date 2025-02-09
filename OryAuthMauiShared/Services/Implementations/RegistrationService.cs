@@ -50,7 +50,7 @@ public class RegistrationService : IRegistrationService
 
         try
         {
-            result = _frontendApi.UpdateRegistrationFlow(flowId, clientUpdateRegistrationFlowBody);
+            result =await _frontendApi.UpdateRegistrationFlowAsync(flowId, clientUpdateRegistrationFlowBody);
         }
 
 

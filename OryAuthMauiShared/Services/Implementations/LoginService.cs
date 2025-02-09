@@ -36,7 +36,7 @@ public class LoginService : ILoginService
             (
                 new  ClientUpdateLoginFlowWithPasswordMethod
             (
-              
+                method:"password",
                 identifier: email,
                 password: loginPassword
                 
@@ -45,7 +45,7 @@ public class LoginService : ILoginService
 
          try     
         {
-             result = _frontendApi.UpdateLoginFlow(flowId, clientUpdateLoginFlowBody);
+             result =await _frontendApi.UpdateLoginFlowAsync(flowId, clientUpdateLoginFlowBody);
         }
         
 

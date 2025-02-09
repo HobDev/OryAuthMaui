@@ -25,7 +25,7 @@ public class RegisterPage : ContentPage
 					WidthRequest = 300,
 					FontSize = 18,
 					HorizontalOptions = LayoutOptions.Center
-				}.Bind(Entry.TextProperty, nameof(RegisterViewModel.EmailId)),
+				}.Bind(Entry.TextProperty, nameof(viewModel.EmailId)),
 				new Entry
 				{
 					Placeholder = "Password",
@@ -33,7 +33,7 @@ public class RegisterPage : ContentPage
 					WidthRequest = 300,
 					FontSize = 18,
 					HorizontalOptions = LayoutOptions.Center
-				}.Bind(Entry.TextProperty, nameof(RegisterViewModel.Password)),
+				}.Bind(Entry.TextProperty, nameof(viewModel.Password)),
 				new Button
 				{
 					Text = "Register",

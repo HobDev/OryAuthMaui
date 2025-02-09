@@ -12,3 +12,4 @@ global using OryAuthMauiMvvm.Pages;
 global using OryAuthMauiShared.Services.Implementations;
 global using OryAuthMauiShared.Services.Interfaces;
 global using CommunityToolkit.Mvvm.ComponentModel;
+global using CommunityToolkit.Mvvm.Input;

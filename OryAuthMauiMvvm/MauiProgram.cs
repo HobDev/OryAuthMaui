@@ -32,6 +32,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<IForgotPasswordService, ForgotPasswordService>();
 		builder.Services.AddSingleton<IChangePasswordService, ChangePasswordService>();
 		builder.Services.AddSingleton<ILogoutService, LogoutService>();
+        builder.Services.AddSingleton<INavigationService, MauiNavigationService>();
 		return builder;
 	}
 
