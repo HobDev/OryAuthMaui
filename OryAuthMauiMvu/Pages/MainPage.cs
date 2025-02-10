@@ -7,37 +7,54 @@ class MainPageState
     public int Counter { get; set; }
 }
 
-class MainPage : Component<MainPageState>
+partial class MainPage : Component<MainPageState>
 {
+  [Inject]
+  readonly ILogoutService _logoutService;
+  [Inject]
+  readonly IChangePasswordService _changePasswordService;
+
     public override VisualNode Render()
     {
         return new ContentPage
         {
             new ScrollView
             {
-                new VerticalStackLayout
+                new VStack
                 {
-                    new Image("dotnet_bot.png")
-                        .HeightRequest(200)
+                        new Button("Logout")
+                    .WidthRequest(300)
+                        .OnClicked(Logout)
                         .HCenter()
-                        .Set(MauiControls.SemanticProperties.DescriptionProperty, "Cute dot net bot waving hi to you!"),
+                        .Margin(0,30,0,0),
 
-                    new Label("Hello, World!")
-                        .FontSize(32)
-                        .HCenter(),
-
-                    new Label("Welcome to MauiReactor: MAUI with superpowers!")
-                        .FontSize(18)
-                        .HCenter(),
-
-                    new Button(State.Counter == 0 ? "Click me" : $"Clicked {State.Counter} times!")
-                        .OnClicked(()=>SetState(s => s.Counter ++))
-                        .HCenter()                    
+                            new Button("Change Password")
+                    .WidthRequest(300)
+                        .OnClicked(ChangePassword)
+                        .HCenter()
+                        .Margin(0,10,0,0 )
                 }
                 .VCenter()
                 .Spacing(25)
                 .Padding(30, 0)
             }
         };
+    }
+
+    async Task Logout()
+    {
+        try
+        {
+            await _logoutService.LogoutUser();
+        }
+        catch
+        {
+
+        }
+    }
+
+    async Task ChangePassword()
+    {
+
     }
 }

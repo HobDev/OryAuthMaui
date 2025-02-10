@@ -1,8 +1,4 @@
-using System;
 
-using CommunityToolkit.Mvvm.Input;
-
-using Ory.Client.Model;
 
 namespace OryAuthMauiMvvm.ViewModels;
 

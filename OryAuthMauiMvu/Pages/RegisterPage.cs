@@ -7,15 +7,18 @@ namespace OryAuthMauiMvu.Pages;
 
 class RegisterPageState
 {
-  public string EmailId{get;set;}   
-   public string Password {get;set;}
+  public string? EmailId{get;set;}   
+   public string? Password {get;set;}
 
 }
 
 partial class RegisterPage : Component<RegisterPageState>
 {
     [Inject]
-    IRegistrationService _registrationService;
+    readonly IRegistrationService _registrationService;
+
+    [Inject]
+    readonly INavigationService _navigationService;
     
     public override VisualNode Render()
     {
@@ -25,11 +28,6 @@ partial class RegisterPage : Component<RegisterPageState>
             {
                 new VStack
                 {
-
-                    new Label("Register!")
-                        .FontSize(32)
-                        .HCenter(),
-
                     new Entry()
                     .Placeholder("Email")
                     .HCenter()
@@ -64,9 +62,7 @@ partial class RegisterPage : Component<RegisterPageState>
        
         var flow = await _registrationService.CreateRegistrationFlow();
         string _flowId = flow.Id;
-       // Use flow.Ui to populate your registration form
-
-
+      
          var traits = new Dictionary<string, object>
          {
              {"email", State.EmailId},
@@ -76,10 +72,12 @@ partial class RegisterPage : Component<RegisterPageState>
         {
           ClientSuccessfulNativeRegistration? result = await _registrationService.RegisterUser(traits, State.Password, _flowId);
          // Handle successful registration
+          await _navigationService.NavigateToAsync(nameof(MainPage));
         }
         catch (Exception ex)
         {
             // Handle registration error
+          await  MauiControls.Shell.Current.DisplayAlert("Error",ex.Message,"Okay");
         }
     }
 }

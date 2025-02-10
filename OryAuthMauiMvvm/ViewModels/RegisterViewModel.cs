@@ -14,11 +14,12 @@ public partial class RegisterViewModel: ObservableObject
 
 
      private readonly IRegistrationService _registrationService;
+     private readonly INavigationService _navigationService;
      
-    public RegisterViewModel(IRegistrationService registrationService)
+    public RegisterViewModel(IRegistrationService registrationService, INavigationService navigationService)
     {
         _registrationService = registrationService;
-      
+        _navigationService= navigationService;
     }
     
 
@@ -28,9 +29,7 @@ public partial class RegisterViewModel: ObservableObject
     {
       ClientRegistrationFlow? flow= await  _registrationService.CreateRegistrationFlow();
      string _flowId = flow.Id;
-         // Use flow.Ui to populate your registration form
-
-
+        
          var traits = new Dictionary<string, object>
          {
              {"email", EmailId},
@@ -40,11 +39,13 @@ public partial class RegisterViewModel: ObservableObject
         {
             ClientSuccessfulNativeRegistration? result = await _registrationService.RegisterUser( traits, Password, _flowId);
           // Handle successful registration
+           await  _navigationService.NavigateToAsync(nameof(MainPage));
         
         }
         catch (Exception ex)
         {
             // Handle registration error
+            await Shell.Current.DisplayAlert("Error",ex.Message,"Okay");
         }
     }   
 }
