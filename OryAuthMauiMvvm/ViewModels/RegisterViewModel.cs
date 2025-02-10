@@ -39,7 +39,7 @@ public partial class RegisterViewModel: ObservableObject
         {
             ClientSuccessfulNativeRegistration? result = await _registrationService.RegisterUser( traits, Password, _flowId);
           // Handle successful registration
-           await  _navigationService.NavigateToAsync(nameof(MainPage));
+           await  _navigationService.NavigateToAsync($"///{nameof(MainPage)}");
         
         }
         catch (Exception ex)

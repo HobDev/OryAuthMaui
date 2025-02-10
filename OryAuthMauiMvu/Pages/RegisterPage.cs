@@ -72,7 +72,7 @@ partial class RegisterPage : Component<RegisterPageState>
         {
           ClientSuccessfulNativeRegistration? result = await _registrationService.RegisterUser(traits, State.Password, _flowId);
          // Handle successful registration
-          await _navigationService.NavigateToAsync(nameof(MainPage));
+          await _navigationService.NavigateToAsync($"///{nameof(MainPage)}");
         }
         catch (Exception ex)
         {

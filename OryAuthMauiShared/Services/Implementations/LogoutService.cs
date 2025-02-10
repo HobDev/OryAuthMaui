@@ -1,5 +1,7 @@
 using System;
 
+using OryAuthMauiShared.Models;
+
 namespace OryAuthMauiShared.Services.Implementations;
 
 public class LogoutService : ILogoutService
@@ -10,7 +12,7 @@ public class LogoutService : ILogoutService
     {
         var configuration = new Configuration
         {
-            BasePath = AppConstants.baseUrl
+            BasePath = AppConstants.BaseUrl
         };
 
         _frontendApi = new FrontendApi(configuration);
@@ -22,6 +24,6 @@ public class LogoutService : ILogoutService
         // (
         //     sessionToken: "ory_st_fQqa42WZwPZlTgBNk5e6A21Vh8mUjDut"
         // );
-       await  _frontendApi.UpdateLogoutFlowAsync("ory_st_IsoxTIqzkAEvuKKPuUAA0nh3bNrrXJ3w");
+       await  _frontendApi.UpdateLogoutFlowAsync("ory_st_SQVuA9fXnWGV896KLK3VnRM1nFJvbUqI");
     }
 }

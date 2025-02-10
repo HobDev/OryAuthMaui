@@ -1,6 +1,8 @@
 using System;
 using Ory.Client.Model;
 
+using OryAuthMauiShared.Models;
+
 namespace OryAuthMauiShared.Services.Implementations;
 
 public class LoginService : ILoginService
@@ -10,7 +12,7 @@ public class LoginService : ILoginService
     {
         var configuration = new Configuration
         {
-            BasePath = AppConstants.baseUrl
+            BasePath = AppConstants.BaseUrl
         };
 
         _frontendApi = new FrontendApi(configuration);

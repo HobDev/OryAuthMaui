@@ -7,7 +7,7 @@ namespace OryAuthMauiMvu;
 
 class AppShellState
     {
-    public bool isLoggedIn { get; set; }
+    public bool isLoggedIn { get; set; }=true;
 }
 
 class AppShell : Component<AppShellState>

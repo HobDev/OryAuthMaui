@@ -2,6 +2,8 @@
 
 
 
+using OryAuthMauiShared.Models;
+
 namespace OryAuthMauiShared.Services.Implementations;
 
 public class RegistrationService : IRegistrationService
@@ -13,7 +15,7 @@ public class RegistrationService : IRegistrationService
     {
         var configuration = new Configuration
         {
-            BasePath = AppConstants.baseUrl
+            BasePath = AppConstants.BaseUrl
         };
 
         _frontendApi = new FrontendApi(configuration);
