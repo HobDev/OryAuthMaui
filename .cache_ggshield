@@ -1,1 +1,1 @@
-{"last_found_secrets": [{"match": "b975836ee6ca1088866e3c7e301b2c031b56ed50f0e583d15c6e170c4cdc8ffb", "name": "Generic High Entropy Secret - c:\\Users\\spara\\repos\\OryAuthMaui\\OryAuthMauiShared\\Services\\Implementations\\LogoutService.cs"}]}
+{"last_found_secrets": [{"name": "Generic High Entropy Secret - c:\\Users\\spara\\repos\\OryAuthMaui\\OryAuthMauiShared\\Services\\Implementations\\LogoutService.cs", "match": "b975836ee6ca1088866e3c7e301b2c031b56ed50f0e583d15c6e170c4cdc8ffb"}]}

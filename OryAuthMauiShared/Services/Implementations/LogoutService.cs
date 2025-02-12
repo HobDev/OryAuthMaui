@@ -24,6 +24,8 @@ public class LogoutService : ILogoutService
         // (
         //     sessionToken: "ory_st_fQqa42WZwPZlTgBNk5e6A21Vh8mUjDut"
         // );
+       
+
        await  _frontendApi.UpdateLogoutFlowAsync("ory_st_SQVuA9fXnWGV896KLK3VnRM1nFJvbUqI");
     }
 }

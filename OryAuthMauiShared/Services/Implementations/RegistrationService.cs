@@ -46,18 +46,8 @@ public class RegistrationService : IRegistrationService
         )
         );
 
-        try
-        {
+       
             result =await _frontendApi.UpdateRegistrationFlowAsync(flowId, clientUpdateRegistrationFlowBody);
-        }
-
-
-        catch (ApiException e)
-        {
-            Debug.Print("Exception when calling FrontendApi.UpdateRegistrationFlow: " + e.Message);
-            Debug.Print("Status Code: " + e.ErrorCode);
-            Debug.Print(e.StackTrace);
-        }
 
         return result;
     }

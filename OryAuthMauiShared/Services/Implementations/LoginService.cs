@@ -20,15 +20,9 @@ public class LoginService : ILoginService
 
     public async Task<ClientLoginFlow> CreateLoginFlow()
     {
-        try
-        {
+        
             return await _frontendApi.CreateNativeLoginFlowAsync();
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine($"Error creating registration flow: {e.Message}");
-            throw;
-        }
+       
     }
 
     public async Task<ClientSuccessfulNativeLogin> LoginUser(string email, string loginPassword, string flowId)
@@ -45,18 +39,7 @@ public class LoginService : ILoginService
             )
             );
 
-         try     
-        {
              result =await _frontendApi.UpdateLoginFlowAsync(flowId, clientUpdateLoginFlowBody);
-        }
-        
-
-          catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling FrontendApi.UpdateRegistrationFlow: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
 
         return result;
     }

@@ -5,3 +5,4 @@ global using OryAuthMauiShared.Services.Interfaces;
 global using System;
 global using System.Diagnostics;
 global using RestSharp;
+global using OryAuthMauiShared.Models;

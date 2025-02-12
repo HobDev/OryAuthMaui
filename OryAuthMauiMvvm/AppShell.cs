@@ -9,27 +9,20 @@ namespace OryAuthMauiMvvm;
 
 public class AppShell : Shell
 {
-    private readonly FrontendApi _frontendApi;
-    private readonly ISecureStorage _secureStorage;
-
-    bool isLoggedIn = false;
-
-    public AppShell(ISecureStorage secureStorage)
+ 
+    readonly  ILoginStatusService _loginStatusService;
+    public AppShell(ILoginStatusService loginStatusService)
     {
-        var configuration = new Configuration
-        {
-            BasePath = AppConstants.BaseUrl
-        };
-
-        _frontendApi = new FrontendApi(configuration);
-        _secureStorage = secureStorage;
+        _loginStatusService = loginStatusService;
+     
+    
 
         Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
         Routing.RegisterRoute(nameof(ForgotPasswordPage), typeof(ForgotPasswordPage));
         Routing.RegisterRoute(nameof(ChangePasswordPage), typeof(ChangePasswordPage));
 
-      
-         Task.Run(async () => await CheckIfUserIsLoggedIn()).Wait();
+      bool isLoggedIn = _loginStatusService.IsLoggedIn;
+     
 
         TabBar loginTab = new TabBar
         {
@@ -59,24 +52,5 @@ public class AppShell : Shell
         }
     }
 
-    private async Task CheckIfUserIsLoggedIn()
-    {
-        try
-        {
-            string? sessionToken = await _secureStorage.GetAsync("sessionToken");    
-            if(sessionToken == null)
-            {
-                isLoggedIn = false;
-                return;
-            }   
-            ClientSession session = await _frontendApi.ToSessionAsync(sessionToken);
-           
-           isLoggedIn = session != null;
-        }
-        catch (ApiException)
-        {
-         
-            isLoggedIn = false;
-        }
-    }
+   
 }

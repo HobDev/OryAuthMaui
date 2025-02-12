@@ -12,19 +12,18 @@ namespace OryAuthMauiMvu;
 
 partial class AppShellState
 {
-  
-    
+   
+ 
+    public bool IsLoggedIn { get; set; }
+   
 }
 
 partial class AppShell : Component<AppShellState>
 {
 
-    public bool isLoggedIn { get; set; } = true;
-
-    private  FrontendApi _frontendApi;
-
     [Inject]
-    readonly ISecureStorage _secureStorage;
+    public readonly ILoginStatusService _loginStatusService;
+
 
 
     protected override void OnMounted()
@@ -33,14 +32,7 @@ partial class AppShell : Component<AppShellState>
         MauiReactor.Routing.RegisterRoute<ForgotPasswordPage>(nameof(ForgotPasswordPage));
         MauiReactor.Routing.RegisterRoute<ChangePasswordPage>(nameof(ChangePasswordPage));
 
-        var configuration = new Configuration
-        {
-            BasePath = AppConstants.BaseUrl
-        };
-
-        _frontendApi = new FrontendApi(configuration);
-
-        Task.Run(async () => await CheckIfUserIsLoggedIn()).Wait();
+        State.IsLoggedIn = _loginStatusService.IsLoggedIn;
 
         base.OnMounted();
     }
@@ -49,7 +41,7 @@ partial class AppShell : Component<AppShellState>
     public override VisualNode Render()
     => Window
    (
-      !isLoggedIn ?
+      !State.IsLoggedIn ?
        RenderLogin()
        :
        RenderShell()
@@ -84,25 +76,6 @@ partial class AppShell : Component<AppShellState>
         );
 
 
-    private async Task CheckIfUserIsLoggedIn()
-    {
-        try
-        {
-            string? sessionToken = await _secureStorage.GetAsync("sessionToken");
-            if (sessionToken == null)
-            {
-                isLoggedIn = false;
-                return;
-            }
-            ClientSession session = await _frontendApi.ToSessionAsync(sessionToken);
-
-            isLoggedIn = session != null;
-        }
-        catch (ApiException)
-        {
-
-            isLoggedIn = false;
-        }
-    }
+   
 }
 
