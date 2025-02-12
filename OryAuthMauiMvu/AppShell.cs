@@ -1,23 +1,46 @@
 ﻿
 using MauiReactor;
+using System;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Model;
+using OryAuthMauiShared.Models;
 
 using OryAuthMauiMvu.Pages;
 
 namespace OryAuthMauiMvu;
 
-class AppShellState
-    {
-    public bool isLoggedIn { get; set; }=true;
+partial class AppShellState
+{
+  
+    
 }
 
-class AppShell : Component<AppShellState>
+partial class AppShell : Component<AppShellState>
 {
+
+    public bool isLoggedIn { get; set; } = true;
+
+    private  FrontendApi _frontendApi;
+
+    [Inject]
+    readonly ISecureStorage _secureStorage;
+
 
     protected override void OnMounted()
     {
         MauiReactor.Routing.RegisterRoute<RegisterPage>(nameof(RegisterPage));
         MauiReactor.Routing.RegisterRoute<ForgotPasswordPage>(nameof(ForgotPasswordPage));
         MauiReactor.Routing.RegisterRoute<ChangePasswordPage>(nameof(ChangePasswordPage));
+
+        var configuration = new Configuration
+        {
+            BasePath = AppConstants.BaseUrl
+        };
+
+        _frontendApi = new FrontendApi(configuration);
+
+        Task.Run(async () => await CheckIfUserIsLoggedIn()).Wait();
 
         base.OnMounted();
     }
@@ -26,7 +49,7 @@ class AppShell : Component<AppShellState>
     public override VisualNode Render()
     => Window
    (
-      !State.isLoggedIn ?
+      !isLoggedIn ?
        RenderLogin()
        :
        RenderShell()
@@ -37,10 +60,12 @@ class AppShell : Component<AppShellState>
              TabBar(
                 ShellContent("LoginPage")
                 .RenderContent(() => new LoginPage())
+                .Route(nameof(LoginPage))
             ),
              TabBar(
                 ShellContent("MainPage")
                 .RenderContent(() => new MainPage())
+                .Route(nameof(MainPage))
              )
         );
 
@@ -49,11 +74,35 @@ class AppShell : Component<AppShellState>
              TabBar(
                 ShellContent("MainPage")
                 .RenderContent(()=> new MainPage())
+                .Route(nameof(MainPage))
              ),
             TabBar(
                 ShellContent("LoginPage")
                 .RenderContent(()=> new LoginPage())
+                .Route(nameof(LoginPage))
             )
         );
+
+
+    private async Task CheckIfUserIsLoggedIn()
+    {
+        try
+        {
+            string? sessionToken = await _secureStorage.GetAsync("sessionToken");
+            if (sessionToken == null)
+            {
+                isLoggedIn = false;
+                return;
+            }
+            ClientSession session = await _frontendApi.ToSessionAsync(sessionToken);
+
+            isLoggedIn = session != null;
+        }
+        catch (ApiException)
+        {
+
+            isLoggedIn = false;
+        }
+    }
 }
 

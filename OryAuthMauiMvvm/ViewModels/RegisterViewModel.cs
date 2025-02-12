@@ -45,9 +45,9 @@ public partial class RegisterViewModel: ObservableObject
             ClientSuccessfulNativeRegistration? result = await _registrationService.RegisterUser( traits, Password, _flowId);
 
              string? sessionToken= result.SessionToken;
-             ClientIdentity.StateEnum? state= result.Identity.State;
-            string? identityId= result.Identity.Id;
-            string? jwt=  result.Session.Tokenized;
+           //  ClientIdentity.StateEnum? state= result.Identity.State;
+           // string? identityId= result.Identity.Id;
+            //string? jwt=  result.Session.Tokenized;
 
             await _secureStorage.SetAsync("sessionToken", sessionToken);    
         

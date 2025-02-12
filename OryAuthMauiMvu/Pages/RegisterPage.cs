@@ -19,6 +19,9 @@ partial class RegisterPage : Component<RegisterPageState>
 
     [Inject]
     readonly INavigationService _navigationService;
+
+    [Inject]
+    readonly ISecureStorage _secureStorage;
     
     public override VisualNode Render()
     {
@@ -71,8 +74,15 @@ partial class RegisterPage : Component<RegisterPageState>
          try
         {
           ClientSuccessfulNativeRegistration? result = await _registrationService.RegisterUser(traits, State.Password, _flowId);
-         // Handle successful registration
-          await _navigationService.NavigateToAsync($"///{nameof(MainPage)}");
+
+            // Handle successful registration
+            string? sessionToken = result.SessionToken;
+            //  ClientIdentity.StateEnum? state= result.Identity.State;
+            // string? identityId= result.Identity.Id;
+            //string? jwt=  result.Session.Tokenized;
+
+            await _secureStorage.SetAsync("sessionToken", sessionToken);
+            await _navigationService.NavigateToAsync($"///{nameof(MainPage)}");
         }
         catch (Exception ex)
         {

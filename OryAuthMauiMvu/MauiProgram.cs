@@ -6,6 +6,7 @@ using OryAuthMauiShared.Services.Interfaces;
 
 
 
+
 namespace OryAuthMauiMvu;
 
 public static class MauiProgram
@@ -37,13 +38,18 @@ public static class MauiProgram
 
     public static MauiAppBuilder ConfigureServices(this MauiAppBuilder builder)
 	{
+        // app services
 		builder.Services.AddSingleton<IRegistrationService,RegistrationService>();
 		builder.Services.AddSingleton<ILoginService,LoginService>();
 		builder.Services.AddSingleton<IChangePasswordService,ChangePasswordService>();
 		builder.Services.AddSingleton<IForgotPasswordService,ForgotPasswordService>();
 		builder.Services.AddSingleton<ILogoutService,LogoutService>();
         builder.Services.AddSingleton<INavigationService, MauiNavigationService>();
-		return builder;
+
+        // other services
+        builder.Services.AddSingleton<ISecureStorage>(SecureStorage.Default);
+
+        return builder;
 	}
 
     public static MauiAppBuilder ConfigurePages(this MauiAppBuilder builder)

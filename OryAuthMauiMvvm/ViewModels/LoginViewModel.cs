@@ -38,7 +38,9 @@ public partial class LoginViewModel: ObservableObject
          ClientSuccessfulNativeLogin? result=  await _loginService.LoginUser(email:EmailId, loginPassword: Password, _flowId);
 
                 string? sessionToken = result.SessionToken;
-                string? jwt = result.Session.Tokenized;
+                // ClientIdentity.StateEnum? state= result.Identity.State;
+                // string? identityId= result.Identity.Id;
+                // string? jwt=  result.Session.Tokenized;
 
                 await _secureStorage.SetAsync("sessionToken", sessionToken);
             }

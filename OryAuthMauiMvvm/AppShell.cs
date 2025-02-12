@@ -69,7 +69,7 @@ public class AppShell : Shell
                 isLoggedIn = false;
                 return;
             }   
-            ClientSession session = await _frontendApi.ToSessionAsync();
+            ClientSession session = await _frontendApi.ToSessionAsync(sessionToken);
            
            isLoggedIn = session != null;
         }

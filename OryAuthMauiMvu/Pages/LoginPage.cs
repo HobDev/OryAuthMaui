@@ -18,6 +18,10 @@ class LoginPageState
 
     [Inject]
     readonly INavigationService _navigationService;
+
+    [Inject]
+    readonly ISecureStorage _secureStorage;
+
     public override VisualNode Render()
     {
         return new ContentPage
@@ -80,7 +84,16 @@ class LoginPageState
             {
                 ClientLoginFlow? flow = await _loginService.CreateLoginFlow();
                 string _flowId = flow.Id;
-                await _loginService.LoginUser(email: State.EmailId, loginPassword: State.Password, _flowId);
+            ClientSuccessfulNativeLogin? result=   await _loginService.LoginUser(email: State.EmailId, loginPassword: State.Password, _flowId);
+
+                // Handle successful registration
+                string? sessionToken = result.SessionToken;
+                //  ClientIdentity.StateEnum? state= result.Identity.State;
+                // string? identityId= result.Identity.Id;
+                //string? jwt=  result.Session.Tokenized;
+
+                await _secureStorage.SetAsync("sessionToken", sessionToken);
+                await _navigationService.NavigateToAsync($"///{nameof(MainPage)}");
             }
         }
         catch (Exception ex)

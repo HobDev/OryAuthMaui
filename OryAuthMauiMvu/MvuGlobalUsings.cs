@@ -8,3 +8,4 @@ global using Microsoft.Extensions.DependencyInjection;
 global using System.Collections.Generic;
 global using OryAuthMauiShared.Services.Implementations;
 global using OryAuthMauiShared.Services.Interfaces;
+global using Microsoft.Maui.Storage;
