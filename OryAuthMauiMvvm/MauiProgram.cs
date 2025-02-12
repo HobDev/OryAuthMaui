@@ -18,6 +18,8 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
+            builder.Services.AddSingleton<AppShell>();
+
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
@@ -27,12 +29,17 @@ public static class MauiProgram
 
 	 public static MauiAppBuilder ConfigureServices(this MauiAppBuilder builder)
 	{
+        // app services
 		builder.Services.AddSingleton<IRegistrationService, RegistrationService>();
 		builder.Services.AddSingleton<ILoginService, LoginService>();
 		builder.Services.AddSingleton<IForgotPasswordService, ForgotPasswordService>();
 		builder.Services.AddSingleton<IChangePasswordService, ChangePasswordService>();
 		builder.Services.AddSingleton<ILogoutService, LogoutService>();
         builder.Services.AddSingleton<INavigationService, MauiNavigationService>();
+
+        // other services
+        builder.Services.AddSingleton<ISecureStorage>(SecureStorage.Default);
+
 		return builder;
 	}
 

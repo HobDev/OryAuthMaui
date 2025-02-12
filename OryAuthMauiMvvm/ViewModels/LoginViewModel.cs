@@ -13,10 +13,13 @@ public partial class LoginViewModel: ObservableObject
     string password;
     private ILoginService _loginService;
    private INavigationService _navigationService;
-   public LoginViewModel(ILoginService loginService, INavigationService navigationService)
+   private ISecureStorage _secureStorage;
+   
+   public LoginViewModel(ILoginService loginService, INavigationService navigationService, ISecureStorage secureStorage)
    {
         _loginService= loginService;
         _navigationService= navigationService;
+        _secureStorage= secureStorage;
    }
 
    [RelayCommand]
@@ -32,8 +35,13 @@ public partial class LoginViewModel: ObservableObject
        {
           ClientLoginFlow? flow=await _loginService.CreateLoginFlow();
           string _flowId= flow.Id;
-          await _loginService.LoginUser(email:EmailId, loginPassword: Password, _flowId);
-       }
+         ClientSuccessfulNativeLogin? result=  await _loginService.LoginUser(email:EmailId, loginPassword: Password, _flowId);
+
+                string? sessionToken = result.SessionToken;
+                string? jwt = result.Session.Tokenized;
+
+                await _secureStorage.SetAsync("sessionToken", sessionToken);
+            }
     }
     catch(Exception ex)
     {

@@ -1,4 +1,6 @@
 
+using Android.SE.Omapi;
+
 using Ory.Client.Model;
 
 namespace OryAuthMauiMvvm.ViewModels;
@@ -15,11 +17,14 @@ public partial class RegisterViewModel: ObservableObject
 
      private readonly IRegistrationService _registrationService;
      private readonly INavigationService _navigationService;
+
+     private readonly ISecureStorage _secureStorage;    
      
-    public RegisterViewModel(IRegistrationService registrationService, INavigationService navigationService)
+    public RegisterViewModel(IRegistrationService registrationService, INavigationService navigationService, ISecureStorage secureStorage)
     {
         _registrationService = registrationService;
         _navigationService= navigationService;
+        _secureStorage= secureStorage;
     }
     
 
@@ -38,7 +43,15 @@ public partial class RegisterViewModel: ObservableObject
          try
         {
             ClientSuccessfulNativeRegistration? result = await _registrationService.RegisterUser( traits, Password, _flowId);
-          // Handle successful registration
+
+             string? sessionToken= result.SessionToken;
+             ClientIdentity.StateEnum? state= result.Identity.State;
+            string? identityId= result.Identity.Id;
+            string? jwt=  result.Session.Tokenized;
+
+            await _secureStorage.SetAsync("sessionToken", sessionToken);    
+        
+            // Handle successful registration
            await  _navigationService.NavigateToAsync($"///{nameof(MainPage)}");
         
         }

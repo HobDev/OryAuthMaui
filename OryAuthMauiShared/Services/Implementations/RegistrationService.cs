@@ -1,7 +1,3 @@
-
-
-
-
 using OryAuthMauiShared.Models;
 
 namespace OryAuthMauiShared.Services.Implementations;
