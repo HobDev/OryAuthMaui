@@ -10,10 +10,10 @@ namespace OryAuthMauiMvvm;
 public class AppShell : Shell
 {
  
-    readonly  ILoginStatusService _loginStatusService;
+    
     public AppShell(ILoginStatusService loginStatusService)
     {
-        _loginStatusService = loginStatusService;
+       
      
     
 
@@ -21,7 +21,7 @@ public class AppShell : Shell
         Routing.RegisterRoute(nameof(ForgotPasswordPage), typeof(ForgotPasswordPage));
         Routing.RegisterRoute(nameof(ChangePasswordPage), typeof(ChangePasswordPage));
 
-      bool isLoggedIn = _loginStatusService.IsLoggedIn;
+      bool isLoggedIn = loginStatusService.IsLoggedIn;
      
 
         TabBar loginTab = new TabBar

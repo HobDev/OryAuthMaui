@@ -43,6 +43,7 @@ public partial class LoginViewModel: ObservableObject
                 // string? jwt=  result.Session.Tokenized;
 
                 await _secureStorage.SetAsync("sessionToken", sessionToken);
+                await _navigationService.NavigateToAsync($"///{nameof(MainPage)}");
             }
     }
     catch(Exception ex)

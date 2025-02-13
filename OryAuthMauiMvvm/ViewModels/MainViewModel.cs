@@ -22,9 +22,9 @@ public partial class MainViewModel
         {
            await _logoutService.LogoutUser();
         }
-        catch
+        catch(Exception ex)
         {
-
+           await Shell.Current.DisplayAlert("Error", ex.Message, "Ok");
         }
      }
 
@@ -35,9 +35,9 @@ public partial class MainViewModel
         {
            
         }
-        catch
+        catch (Exception ex)
         {
-
+            await Shell.Current.DisplayAlert("Error", ex.Message, "Ok");
         }
      }
 }

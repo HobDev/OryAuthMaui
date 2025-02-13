@@ -8,7 +8,8 @@ public class LogoutService : ILogoutService
 {
 
     private readonly FrontendApi _frontendApi;
-    public LogoutService()
+    private readonly ISecureStorage _secureStorage;
+    public LogoutService(ISecureStorage secureStorage)
     {
         var configuration = new Configuration
         {
@@ -16,6 +17,7 @@ public class LogoutService : ILogoutService
         };
 
         _frontendApi = new FrontendApi(configuration);
+        _secureStorage = secureStorage;
     }
     public async Task LogoutUser()
     {
@@ -25,7 +27,7 @@ public class LogoutService : ILogoutService
         //     sessionToken: "ory_st_fQqa42WZwPZlTgBNk5e6A21Vh8mUjDut"
         // );
        
-
-       await  _frontendApi.UpdateLogoutFlowAsync("ory_st_SQVuA9fXnWGV896KLK3VnRM1nFJvbUqI");
+       string? sessionToken = await _secureStorage.GetAsync("sessionToken");    
+       await  _frontendApi.UpdateLogoutFlowAsync(sessionToken);
     }
 }
