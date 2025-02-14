@@ -13,14 +13,9 @@ public class AppShell : Shell
     
     public AppShell(ILoginStatusService loginStatusService)
     {
-       
-     
-    
 
         Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
-        Routing.RegisterRoute(nameof(ForgotPasswordPage), typeof(ForgotPasswordPage));
-        Routing.RegisterRoute(nameof(ChangePasswordPage), typeof(ChangePasswordPage));
-
+        Routing.RegisterRoute(nameof(RecoverPasswordPage), typeof(RecoverPasswordPage));
       bool isLoggedIn = loginStatusService.IsLoggedIn;
      
 

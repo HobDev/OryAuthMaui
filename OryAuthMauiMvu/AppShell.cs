@@ -29,8 +29,7 @@ partial class AppShell : Component<AppShellState>
     protected override void OnMounted()
     {
         MauiReactor.Routing.RegisterRoute<RegisterPage>(nameof(RegisterPage));
-        MauiReactor.Routing.RegisterRoute<ForgotPasswordPage>(nameof(ForgotPasswordPage));
-        MauiReactor.Routing.RegisterRoute<ChangePasswordPage>(nameof(ChangePasswordPage));
+        MauiReactor.Routing.RegisterRoute<RecoverPasswordPage>(nameof(RecoverPasswordPage));
 
         State.IsLoggedIn = _loginStatusService.IsLoggedIn;
 

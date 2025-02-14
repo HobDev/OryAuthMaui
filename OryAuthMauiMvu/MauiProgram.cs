@@ -41,8 +41,7 @@ public static class MauiProgram
         // app services
 		builder.Services.AddSingleton<IRegistrationService,RegistrationService>();
 		builder.Services.AddSingleton<ILoginService,LoginService>();
-		builder.Services.AddSingleton<IChangePasswordService,ChangePasswordService>();
-		builder.Services.AddSingleton<IForgotPasswordService,ForgotPasswordService>();
+		builder.Services.AddSingleton<IRecoveryService,RecoveryService>();
 		builder.Services.AddSingleton<ILogoutService,LogoutService>();
         builder.Services.AddSingleton<INavigationService, MauiNavigationService>();
         builder.Services.AddSingleton<ILoginStatusService, LoginStatusService>();
@@ -57,8 +56,7 @@ public static class MauiProgram
 	{
 		builder.Services.AddTransient<RegisterPage>();
 		builder.Services.AddTransient<LoginPage>();
-		builder.Services.AddTransient<ForgotPasswordPage>();
-		builder.Services.AddTransient<ChangePasswordPage>();
+		builder.Services.AddTransient<RecoverPasswordPage>();
 		builder.Services.AddTransient<MainPage>();
 		return builder;
 	}

@@ -119,7 +119,7 @@ class LoginPageState
     {
         try
         {
-            await _navigationService.NavigateToAsync(nameof(ForgotPasswordPage));
+            await _navigationService.NavigateToAsync(nameof(RecoverPasswordPage));
         }
         catch (Exception ex)
         {

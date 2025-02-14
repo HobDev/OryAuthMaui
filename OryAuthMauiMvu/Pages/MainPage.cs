@@ -12,7 +12,7 @@ partial class MainPage : Component<MainPageState>
   [Inject]
   readonly ILogoutService _logoutService;
   [Inject]
-  readonly IChangePasswordService _changePasswordService;
+  readonly INavigationService _navigationService;
 
     public override VisualNode Render()
     {
@@ -47,14 +47,21 @@ partial class MainPage : Component<MainPageState>
         {
             await _logoutService.LogoutUser();
         }
-        catch
+        catch(Exception ex)
         {
-
+            await MauiControls.Shell.Current.DisplayAlert("Error", ex.Message, "Okay");
         }
     }
 
     async Task ChangePassword()
     {
-
+        try
+        {
+            await _navigationService.NavigateToAsync(nameof(RecoverPasswordPage));
+        }
+        catch (Exception ex)
+        {
+            await MauiControls.Shell.Current.DisplayAlert("Error", ex.Message, "Okay");
+        }
     }
 }

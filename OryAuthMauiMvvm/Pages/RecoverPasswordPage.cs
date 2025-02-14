@@ -1,8 +1,8 @@
 namespace OryAuthMauiMvvm.Pages;
 
-public class ChangePasswordPage : ContentPage
+public class RecoverPasswordPage : ContentPage
 {
-	public ChangePasswordPage()
+	public RecoverPasswordPage()
 	{
 		Content = new VerticalStackLayout
 		{

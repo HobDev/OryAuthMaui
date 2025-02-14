@@ -70,7 +70,7 @@ public partial class LoginViewModel: ObservableObject
     {
         try
         {
-           await _navigationService.NavigateToAsync(nameof(ForgotPasswordPage));
+           await _navigationService.NavigateToAsync(nameof(RecoverPasswordPage));
         }
         catch (Exception ex)
         {
