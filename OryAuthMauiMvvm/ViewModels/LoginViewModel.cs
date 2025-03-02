@@ -25,7 +25,8 @@ public partial class LoginViewModel: ObservableObject
    [RelayCommand]
    async Task Login()
    {
-    try
+        BusyPopup busyPopup = new BusyPopup("Logging in...");
+        try
     {
        if(string.IsNullOrWhiteSpace(EmailId) || string.IsNullOrWhiteSpace(Password))
        {
@@ -33,6 +34,8 @@ public partial class LoginViewModel: ObservableObject
        }
        else
        {
+             
+              Shell.Current.ShowPopup(busyPopup);  
           ClientLoginFlow? flow=await _loginService.CreateLoginFlow();
           string _flowId= flow.Id;
          ClientSuccessfulNativeLogin? result=  await _loginService.LoginUser(email:EmailId, loginPassword: Password, _flowId);
@@ -44,10 +47,13 @@ public partial class LoginViewModel: ObservableObject
 
                 await _secureStorage.SetAsync("sessionToken", sessionToken);
                 await _navigationService.NavigateToAsync($"///{nameof(MainPage)}");
+
+                busyPopup?.Close();
             }
     }
     catch(Exception ex)
     {
+        busyPopup?.Close();
        await Shell.Current.DisplayAlert("Error", ex.Message, "Okay");
     }
    }

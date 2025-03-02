@@ -13,7 +13,8 @@ public class LogoutService : ILogoutService
     {
         var configuration = new Configuration
         {
-            BasePath = AppConstants.BaseUrl
+             BasePath = AppConstants.BaseUrl
+         
         };
 
         _frontendApi = new FrontendApi(configuration);
@@ -21,13 +22,14 @@ public class LogoutService : ILogoutService
     }
     public async Task LogoutUser()
     {
-        
-        // ClientPerformNativeLogoutBody? clientPerformNativeLogoutBody= new ClientPerformNativeLogoutBody
-        // (
-        //     sessionToken: "ory_st_fQqa42WZwPZlTgBNk5e6A21Vh8mUjDut"
-        // );
-       
-       string? sessionToken = await _secureStorage.GetAsync("sessionToken");    
-       await  _frontendApi.UpdateLogoutFlowAsync(sessionToken);
+        string? sessionToken = await _secureStorage.GetAsync("sessionToken");
+
+        ClientPerformNativeLogoutBody? clientPerformNativeLogoutBody= new ClientPerformNativeLogoutBody
+        (
+            sessionToken: sessionToken
+        );
+     await _frontendApi.PerformNativeLogoutAsync(clientPerformNativeLogoutBody);
+
+      
     }
 }

@@ -14,3 +14,5 @@ global using OryAuthMauiShared.Services.Interfaces;
 global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
 global using Ory.Client.Model;
+global using OryAuthMauiMvvm.Popups;
+global using CommunityToolkit.Maui.Views;

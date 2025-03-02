@@ -6,7 +6,8 @@ public class LoginPage : ContentPage
 	{
         Content = new VerticalStackLayout
         {
-
+            HorizontalOptions = LayoutOptions.Center,   
+            VerticalOptions = LayoutOptions.Center,
             Spacing = 20,
             Children =
             {

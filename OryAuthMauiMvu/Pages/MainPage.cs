@@ -1,4 +1,10 @@
-﻿using MauiReactor;
+﻿
+using CommunityToolkit.Maui.Views;
+
+using MauiReactor;
+
+using OryAuthMauiMvu.Popups;
+
 
 namespace OryAuthMauiMvu.Pages;
 
@@ -14,8 +20,12 @@ partial class MainPage : Component<MainPageState>
   [Inject]
   readonly INavigationService _navigationService;
 
+  [Inject]
+    readonly ILoginStatusService _loginStatusService;
+
     public override VisualNode Render()
     {
+      
         return new ContentPage
         {
             new ScrollView
@@ -32,7 +42,9 @@ partial class MainPage : Component<MainPageState>
                     .WidthRequest(300)
                         .OnClicked(ChangePassword)
                         .HCenter()
-                        .Margin(0,10,0,0 )
+                        .Margin(0,10,0,0 ),
+
+                      
                 }
                 .VCenter()
                 .Spacing(25)
@@ -45,7 +57,17 @@ partial class MainPage : Component<MainPageState>
     {
         try
         {
+         
             await _logoutService.LogoutUser();
+           bool isLoggedIn=   _loginStatusService.IsLoggedIn; 
+              if(!isLoggedIn)
+              {
+                await _navigationService.NavigateToAsync(nameof(LoginPage));
+              }
+              else
+              {
+                await MauiControls.Shell.Current.DisplayAlert("Error", "Logout failed", "Okay");
+              }
         }
         catch(Exception ex)
         {

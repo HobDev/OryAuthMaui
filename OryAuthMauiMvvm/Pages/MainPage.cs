@@ -6,6 +6,9 @@ public class MainPage : ContentPage
 	{
 		Content = new VerticalStackLayout
 		{
+            HorizontalOptions = LayoutOptions.Center,
+            VerticalOptions = LayoutOptions.Center,
+            Spacing = 20,
 			Children = {
 				new Button { HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center, Text = "Logout"
 				}.BindCommand(nameof(viewModel.LogoutCommand)),

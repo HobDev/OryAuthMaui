@@ -1,6 +1,4 @@
-using System;
 
-using CommunityToolkit.Mvvm.Input;
 
 namespace OryAuthMauiMvvm.ViewModels;
 
@@ -8,12 +6,14 @@ public partial class MainViewModel
 {
     private readonly ILogoutService _logoutService;
     private readonly IRecoveryService  _recoveryService;
-
     private readonly INavigationService _navigationService; 
-    public MainViewModel(ILogoutService logoutService, IRecoveryService recoveryService, INavigationService navigationService)
+
+    private readonly ILoginStatusService _loginStatusService;
+    public MainViewModel(ILogoutService logoutService, IRecoveryService recoveryService, ILoginStatusService loginStatusService ,INavigationService navigationService)
     {
         _logoutService = logoutService;
         _recoveryService = recoveryService;
+        _loginStatusService = loginStatusService;
         _navigationService = navigationService;
     }
     
@@ -21,13 +21,28 @@ public partial class MainViewModel
      [RelayCommand]
      async Task Logout()
      {
+        BusyPopup? busyPopup = new BusyPopup("Logging out...");
         try
         {
+            
+              Shell.Current.ShowPopup(busyPopup);
            await _logoutService.LogoutUser();
+            bool isLoggedIn = _loginStatusService.IsLoggedIn;
+            if (!isLoggedIn)
+            {
+                await _navigationService.NavigateToAsync(nameof(LoginPage));
+                busyPopup?.Close();
+            }
+            else
+            {
+                busyPopup?.Close();
+                await Shell.Current.DisplayAlert("Error", "Logout failed", "Okay");
+            }
         }
         catch(Exception ex)
         {
-           await Shell.Current.DisplayAlert("Error", ex.Message, "Ok");
+            busyPopup?.Close();
+            await Shell.Current.DisplayAlert("Error", ex.Message, "Ok");
         }
      }
 
