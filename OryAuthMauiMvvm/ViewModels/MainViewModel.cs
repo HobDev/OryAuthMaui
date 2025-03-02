@@ -30,7 +30,7 @@ public partial class MainViewModel
             bool isLoggedIn = _loginStatusService.IsLoggedIn;
             if (!isLoggedIn)
             {
-                await _navigationService.NavigateToAsync(nameof(LoginPage));
+                await _navigationService.NavigateToAsync($"///{nameof(LoginPage)}");
                 busyPopup?.Close();
             }
             else

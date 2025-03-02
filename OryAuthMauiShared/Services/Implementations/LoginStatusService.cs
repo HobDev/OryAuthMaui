@@ -37,7 +37,7 @@ public class LoginStatusService : ILoginStatusService
             ClientSession session = await _frontendApi.ToSessionAsync(sessionToken);
 
             IsLoggedIn= session != null;
-
-            _secureStorage.Remove("sessionToken");    
+          
+          
     }
 }
