@@ -2,9 +2,11 @@ using System;
 
 namespace OryAuthMauiMvvm.ViewModels;
 
-public partial class RecoverPasswordViewModel
+public partial class RecoverPasswordViewModel: ObservableObject
 {
 
+     [ObservableProperty]
+     string emailId;
     private readonly IRecoveryService _recoveryService;
     private readonly INavigationService _navigationService;
 
@@ -20,18 +22,10 @@ public partial class RecoverPasswordViewModel
     {
         try
         {
-            await _navigationService.NavigateToAsync(nameof(RecoverPasswordPage));
-        }
-        catch (Exception ex)
-        {
-            await Shell.Current.DisplayAlert("Error", ex.Message, "Okay");
-        }
-        try
-        {
             ClientRecoveryFlow? flow = await _recoveryService.CreateRecoveryFlow();
             string? flowId = flow.Id;
 
-            ClientRecoveryFlow? clientRecoveryFlow = await _recoveryService.RecoverPassword("{email here}", flowId);
+            ClientRecoveryFlow? clientRecoveryFlow = await _recoveryService.RecoverPassword(this.EmailId, flowId);
 
 
         }

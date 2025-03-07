@@ -1,7 +1,5 @@
 using System;
 using System.ComponentModel;
-using CommunityToolkit.Maui.Core;
-using CommunityToolkit.Maui.Views;
 using MauiReactor;
 using MauiReactor.Internals;
 

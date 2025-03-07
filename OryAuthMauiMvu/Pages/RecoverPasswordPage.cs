@@ -6,7 +6,8 @@ namespace OryAuthMauiMvu.Pages;
 
 class RecoverPasswordPageState
 {
-    
+ public string? EmailId { get; set; }
+   
 }
 
 partial class RecoverPasswordPage : Component<RecoverPasswordPageState>
@@ -25,20 +26,21 @@ partial class RecoverPasswordPage : Component<RecoverPasswordPageState>
             {
                 new VerticalStackLayout
                 {
-                    new Image("dotnet_bot.png")
-                        .HeightRequest(200)
-                        .HCenter()
-                        .Set(MauiControls.SemanticProperties.DescriptionProperty, "Cute dot net bot waving hi to you!"),
-
-                    new Label("Hello, World!")
-                        .FontSize(32)
-                        .HCenter(),
-
-                    new Label("Welcome to MauiReactor: MAUI with superpowers!")
+                   new Entry()
+                    .Placeholder("Email")
+                    .HCenter()
+                    .WidthRequest(300)
                         .FontSize(18)
-                        .HCenter(),
+                        .HCenter()
+                        .OnTextChanged(text => State.EmailId = text),
 
-                          
+                         new Button("RECOVER PASSWORD")
+                    .WidthRequest(300)
+                        .OnClicked(RecoverPassword)
+                        .HCenter()
+                        .Margin(0,10,0,0 )
+
+
                 }
                 .VCenter()
                 .Spacing(25)
@@ -53,10 +55,18 @@ partial class RecoverPasswordPage : Component<RecoverPasswordPageState>
     {
         try
         {
-            ClientRecoveryFlow? flow = await _recoveryService.CreateRecoveryFlow();
-            string? flowId = flow.Id;
+            if (string.IsNullOrWhiteSpace(State.EmailId) )
+            {
+                await MauiControls.Shell.Current.DisplayAlert("Error", "email is required", "Ok");
+            }
+            else
+            {
+                ClientRecoveryFlow? flow = await _recoveryService.CreateRecoveryFlow();
+                string? flowId = flow.Id;
 
-            ClientRecoveryFlow? clientRecoveryFlow = await _recoveryService.RecoverPassword("{email here}", flowId);
+                ClientRecoveryFlow? clientRecoveryFlow = await _recoveryService.RecoverPassword(State.EmailId, flowId);
+            }
+           
 
 
         }
