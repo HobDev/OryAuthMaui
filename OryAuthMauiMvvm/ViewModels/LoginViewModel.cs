@@ -46,7 +46,9 @@ public partial class LoginViewModel: ObservableObject
                 string? sessionToken = result.SessionToken;
               
 
-                await Shell.Current.DisplayAlert("Jwt", jwt, "Okay");
+                string jwt = await _jwtService.GetSessionJWTAsync(sessionToken);
+                 
+                await Shell.Current.DisplayAlert("JWT", jwt, "Okay");
 
                 await _secureStorage.SetAsync("sessionToken", sessionToken);
                 await _navigationService.NavigateToAsync($"///{nameof(MainPage)}");

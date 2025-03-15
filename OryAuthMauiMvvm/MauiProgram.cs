@@ -39,6 +39,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<ILogoutService, LogoutService>();
         builder.Services.AddSingleton<INavigationService, MauiNavigationService>();
         builder.Services.AddSingleton<ILoginStatusService, LoginStatusService>();
+        builder.Services.AddSingleton<IJWTService, JWTService>();
 
         // other services
         builder.Services.AddSingleton<ISecureStorage>(SecureStorage.Default);
