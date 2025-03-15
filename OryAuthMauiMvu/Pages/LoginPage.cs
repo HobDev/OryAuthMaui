@@ -90,7 +90,9 @@ class LoginPageState
                 string? sessionToken = result.SessionToken;
                 //  ClientIdentity.StateEnum? state= result.Identity.State;
                 // string? identityId= result.Identity.Id;
-                //string? jwt=  result.Session.Tokenized;
+                string? jwt=  result.Session.Tokenized;
+
+                await MauiControls.Shell.Current.DisplayAlert("Jwt", jwt, "Okay");
 
                 await _secureStorage.SetAsync("sessionToken", sessionToken);
                 await _navigationService.NavigateToAsync($"///{nameof(MainPage)}");

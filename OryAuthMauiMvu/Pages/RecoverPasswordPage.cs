@@ -6,7 +6,7 @@ namespace OryAuthMauiMvu.Pages;
 
 class RecoverPasswordPageState
 {
-    
+    public string EmailId { get; set; } = string.Empty;
 }
 
 partial class RecoverPasswordPage : Component<RecoverPasswordPageState>
@@ -25,18 +25,19 @@ partial class RecoverPasswordPage : Component<RecoverPasswordPageState>
             {
                 new VerticalStackLayout
                 {
-                    new Image("dotnet_bot.png")
-                        .HeightRequest(200)
-                        .HCenter()
-                        .Set(MauiControls.SemanticProperties.DescriptionProperty, "Cute dot net bot waving hi to you!"),
+                   
+                    new Entry { }
+                    .FontSize(20)
+                    .Placeholder("Email"),
+                    
 
-                    new Label("Hello, World!")
-                        .FontSize(32)
-                        .HCenter(),
+                    new Button {  "Recover Password" }
+                    .OnClicked(() => RecoverPassword()),    
+                  
 
-                    new Label("Welcome to MauiReactor: MAUI with superpowers!")
-                        .FontSize(18)
-                        .HCenter(),
+                    new Button {"Go Back" }
+                    .OnClicked(() => GoBack())
+                   
 
                           
                 }
@@ -53,11 +54,19 @@ partial class RecoverPasswordPage : Component<RecoverPasswordPageState>
     {
         try
         {
+            if(string.IsNullOrWhiteSpace(State.EmailId))
+            {
+                await MauiControls.Shell.Current.DisplayAlert("Error", "Email is required", "Ok");
+                return;
+            }   
             ClientRecoveryFlow? flow = await _recoveryService.CreateRecoveryFlow();
             string? flowId = flow.Id;
 
-            ClientRecoveryFlow? clientRecoveryFlow = await _recoveryService.RecoverPassword("{email here}", flowId);
+            ClientRecoveryFlow? clientRecoveryFlow = await _recoveryService.RecoverPassword(State.EmailId, flowId);
+           
+            await MauiControls.Shell.Current.DisplayAlert("Success", "Password recovery link sent to your email", "Ok");
 
+          await _navigationService.GoBackAsync();
 
         }
         catch (Exception ex)

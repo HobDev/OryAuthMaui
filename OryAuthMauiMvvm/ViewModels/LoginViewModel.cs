@@ -12,12 +12,15 @@ public partial class LoginViewModel: ObservableObject
     [ObservableProperty]
     string password;
     private ILoginService _loginService;
+
+    private IJWTService _jwtService;
    private INavigationService _navigationService;
    private ISecureStorage _secureStorage;
    
-   public LoginViewModel(ILoginService loginService, INavigationService navigationService, ISecureStorage secureStorage)
+   public LoginViewModel(ILoginService loginService, IJWTService jwtService ,INavigationService navigationService, ISecureStorage secureStorage)
    {
         _loginService= loginService;
+        _jwtService= jwtService;
         _navigationService= navigationService;
         _secureStorage= secureStorage;
    }
@@ -41,9 +44,9 @@ public partial class LoginViewModel: ObservableObject
          ClientSuccessfulNativeLogin? result=  await _loginService.LoginUser(email:EmailId, loginPassword: Password, _flowId);
 
                 string? sessionToken = result.SessionToken;
-                // ClientIdentity.StateEnum? state= result.Identity.State;
-                // string? identityId= result.Identity.Id;
-                // string? jwt=  result.Session.Tokenized;
+              
+
+                await Shell.Current.DisplayAlert("Jwt", jwt, "Okay");
 
                 await _secureStorage.SetAsync("sessionToken", sessionToken);
                 await _navigationService.NavigateToAsync($"///{nameof(MainPage)}");
