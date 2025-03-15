@@ -3,6 +3,7 @@ using System;
 namespace OryAuthMauiMvvm.ViewModels;
 
 public partial class RecoverPasswordViewModel: ObservableObject
+public partial class RecoverPasswordViewModel: ObservableObject
 {
 
     [ObservableProperty]

@@ -6,7 +6,8 @@ namespace OryAuthMauiMvu.Pages;
 
 class RecoverPasswordPageState
 {
-    public string EmailId { get; set; } = string.Empty;
+ public string? EmailId { get; set; }
+   
 }
 
 partial class RecoverPasswordPage : Component<RecoverPasswordPageState>
@@ -39,7 +40,7 @@ partial class RecoverPasswordPage : Component<RecoverPasswordPageState>
                     .OnClicked(() => GoBack())
                    
 
-                          
+
                 }
                 .VCenter()
                 .Spacing(25)
